@@ -1,0 +1,42 @@
+<div *ngIf="admin?.adminstration==true ; else hide" >
+
+<div class="container">
+    <!-- Employee list -->
+    <table class="table table-bordered">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">Number</th>
+          <th scope="col">Progress</th>
+          <th scope="col">Formulation Date</th>
+        
+         </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of Projects  "  >
+          <td>{{project.number}}</td>
+          <td>{{project.ProjectProgress*100}}%</td>
+          <td>{{project.createdAt | date : "dd.MM.y"}}</td>
+             
+             <td class="text-center edit-block">
+                <span class="edit" [routerLink]="['editProject/', project._id]">
+                  <button type="button" class="btn btn-success btn-sm">Edit</button>
+                </span>
+                </td>
+            </tr>
+        
+      </tbody>
+    </table>
+  </div>
+<div>
+    <span class="createProject" routerLink="newProject"  routerLinkActive="active">
+        <h3>New Project Space</h3>
+        <button type="button" class="btn btn-success btn-sm">Create</button>
+      </span>
+      
+
+</div>
+</div>
+<ng-template #hide>
+  <h3>Your authorization is pending</h3>                  
+  
+</ng-template>  
